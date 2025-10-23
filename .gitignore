@@ -1,0 +1,14 @@
+// ...existing code...
+# Unity cache folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+MemoryCaptures/
+
+# project-specific (optional)
+PR/Library/
+/Myproject/Library/
