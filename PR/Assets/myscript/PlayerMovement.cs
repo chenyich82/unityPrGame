@@ -26,6 +26,23 @@ public class PlayerMovement : MonoBehaviour
     }
     void Move()
     {
+        float moveX = Input.GetAxis("Horizontal");//水平移動ＡＤ
+        float moveZ = Input.GetAxis("Vertical");//垂直移動ＷＳ
+
+        Vector3 move = new Vector3(moveX, 0, moveZ).normalized;
+        //計算移動方向與標準化：建立一個移動方向向量。.normalized 讓方向的長度永遠是 1，避免斜著走比直走快。
+
+        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : moveSpeed;
+        //檢查是否按下Shift鍵來決定移動速度如果按下 左 Shift，就用跑步速度，否則用走路速度。
+
+        Vector3 moveVelocity = transform.TransformDirection(move) * currentSpeed;
+        //將本地方向轉換爲世界方向，並乘以速度。
+
+        Vector3 newPosition = rb.position + moveVelocity * Time.deltaTime;
+        //計算新的位置：用剛體的當前位置加上移動速度乘以時間增量（Time.deltaTime確保移動是平滑的）
+        rb.MovePosition(newPosition);
+        //移動剛體到新位置
+
 
     }
     void jump()
